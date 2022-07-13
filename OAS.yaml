@@ -1,734 +1,1304 @@
-openapi: 3.0.3
-servers:
-  - url: localhost/api
+openapi: 3.1.0
+x-stoplight:
+  id: wmbauq78jvjpl
 info:
-  description: 'This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.'
-  version: 1.0.0
-  title: Swagger Petstore
-  termsOfService: 'http://swagger.io/terms/'
-  contact:
-    email: apiteam@swagger.io
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-tags:
-  - name: pet
-    description: Everything about your Pets
-    externalDocs:
-      description: Find out more
-      url: 'http://swagger.io'
-  - name: store
-    description: Access to Petstore orders
-  - name: user
-    description: Operations about user
-    externalDocs:
-      description: Find out more about our store
-      url: 'http://swagger.io'
+  title: AgendaService
+  version: '1.0'
+  summary: This API is about agenda functionality
+  description: 'Het "agenda" component is ontwikkeld voor de gemeente Utrecht en heeft als doel een agenda te koppelen aan objecten uit andere componenten uit commonground. Dit stelt je in staat om aan deze objecten, afspraken en beschikbaarheid te kunnen beheren.'
+servers:
+  - url: 'http://localhost/api'
 paths:
-  /pet:
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      description: ''
-      operationId: addPet
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        $ref: '#/components/requestBodies/Pet'
-    put:
-      tags:
-        - pet
-      summary: Update an existing pet
-      description: ''
-      operationId: updatePet
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-        '405':
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        $ref: '#/components/requestBodies/Pet'
-  /pet/findByStatus:
+  /alarms:
     get:
+      summary: GET Alarms
       tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
-      parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - available
-                - pending
-                - sold
-              default: available
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: 'Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.'
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      deprecated: true
-  '/pet/{petId}':
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Pet'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - api_key: []
-    post:
-      tags:
-        - pet
-      summary: Updates a pet in the store with form data
-      description: ''
-      operationId: updatePetWithForm
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - Alarm
       responses:
         '200':
           description: OK
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                name:
-                  description: Updated name of the pet
-                  type: string
-                status:
-                  description: Updated status of the pet
-                  type: string
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      description: ''
-      operationId: deletePet
-      parameters:
-        - name: api_key
-          in: header
-          required: false
-          schema:
-            type: string
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alarm'
+      operationId: get-alarms
+    post:
+      summary: POST Alarm
+      operationId: post-alarms
       responses:
         '200':
           description: OK
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}/uploadImage':
-    post:
-      tags:
-        - pet
-      summary: uploads an image
-      description: ''
-      operationId: uploadFile
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                additionalMetadata:
-                  description: Additional data to pass to server
-                  type: string
-                file:
-                  description: file to upload
-                  type: string
-                  format: binary
-  /store/inventory:
-    get:
+                $ref: '#/components/schemas/Alarm'
       tags:
-        - store
-      summary: Returns pet inventories by status
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Inventory'
-      security:
-        - api_key: []
-  /store/order:
-    post:
-      tags:
-        - store
-      summary: Place an order for a pet
-      description: ''
-      operationId: placeOrder
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Order'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid Order
+        - Alarm
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Order'
-        description: order placed for purchasing the pet
+              $ref: '#/components/schemas/Alarm'
+  '/alarms/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
         required: true
-  '/store/order/{orderId}':
     get:
+      summary: GET Alarm
       tags:
-        - store
-      summary: Find purchase order by ID
-      description: For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
-      operationId: getOrderById
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of pet that needs to be fetched
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-            maximum: 10
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Order'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
-    delete:
-      tags:
-        - store
-      summary: Delete purchase order by ID
-      description: For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
-      operationId: deleteOrder
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of the order that needs to be deleted
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
+        - Alarm
       responses:
         '200':
           description: OK
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
-  # /user:
-  #   post:
-  #     tags:
-  #       - user
-  #     summary: Create user
-  #     description: This can only be done by the logged in user.
-  #     operationId: createUser
-  #     responses:
-  #       default:
-  #         description: successful operation
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: '#/components/schemas/User'
-  #       description: Created user object
-  #       required: true
-  # /user/createWithArray:
-  #   post:
-  #     tags:
-  #       - user
-  #     summary: Creates list of users with given input array
-  #     description: ''
-  #     operationId: createUsersWithArrayInput
-  #     responses:
-  #       default:
-  #         description: successful operation
-  #     requestBody:
-  #       $ref: '#/components/requestBodies/UserArray'
-  # /user/createWithList:
-  #   post:
-  #     tags:
-  #       - user
-  #     summary: Creates list of users with given input array
-  #     description: ''
-  #     operationId: createUsersWithListInput
-  #     responses:
-  #       default:
-  #         description: successful operation
-  #     requestBody:
-  #       $ref: '#/components/requestBodies/UserArray'
-  # /user/login:
-  #   get:
-  #     tags:
-  #       - user
-  #     summary: Logs user into the system
-  #     description: ''
-  #     operationId: loginUser
-  #     parameters:
-  #       - name: username
-  #         in: query
-  #         description: The user name for login
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - name: password
-  #         in: query
-  #         description: The password for login in clear text
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: successful operation
-  #         headers:
-  #           X-Rate-Limit:
-  #             description: calls per hour allowed by the user
-  #             schema:
-  #               type: integer
-  #               format: int32
-  #           X-Expires-After:
-  #             description: date in UTC when token expires
-  #             schema:
-  #               type: string
-  #               format: date-time
-  #         content:
-  #           application/xml:
-  #             schema:
-  #               type: string
-  #           application/json:
-  #             schema:
-  #               type: string
-  #       '400':
-  #         description: Invalid username/password supplied
-  # /user/logout:
-  #   get:
-  #     tags:
-  #       - user
-  #     summary: Logs out current logged in user session
-  #     description: ''
-  #     operationId: logoutUser
-  #     responses:
-  #       default:
-  #         description: successful operation
-  # '/user/{username}':
-    # get:
-    #   tags:
-    #     - user
-    #   summary: Get user by user name
-    #   description: ''
-    #   operationId: getUserByName
-    #   parameters:
-    #     - name: username
-    #       in: path
-    #       description: 'The name that needs to be fetched. Use user1 for testing. '
-    #       required: true
-    #       schema:
-    #         type: string
-    #   responses:
-    #     '200':
-    #       description: successful operation
-    #       content:
-    #         application/xml:
-    #           schema:
-    #             $ref: '#/components/schemas/User'
-    #         application/json:
-    #           schema:
-    #             $ref: '#/components/schemas/User'
-    #     '400':
-    #       description: Invalid username supplied
-    #     '404':
-    #       description: User not found
-    # put:
-    #   tags:
-    #     - user
-    #   summary: Updated user
-    #   description: This can only be done by the logged in user.
-    #   operationId: updateUser
-    #   parameters:
-    #     - name: username
-    #       in: path
-    #       description: name that need to be updated
-    #       required: true
-    #       schema:
-    #         type: string
-    #   responses:
-    #     '200':
-    #       description: OK
-    #     '400':
-    #       description: Invalid user supplied
-    #     '404':
-    #       description: User not found
-    #   requestBody:
-    #     content:
-    #       application/json:
-    #         schema:
-    #           $ref: '#/components/schemas/User'
-    #     description: Updated user object
-    #     required: true
-    # delete:
-      # tags:
-      #   - user
-      # summary: Delete user
-      # description: This can only be done by the logged in user.
-      # operationId: deleteUser
-      # parameters:
-      #   - name: username
-      #     in: path
-      #     description: The name that needs to be deleted
-      #     required: true
-      #     schema:
-      #       type: string
-      # responses:
-      #   '200':
-      #     description: OK
-      #   '400':
-      #     description: Invalid username supplied
-      #   '404':
-      #     description: User not found
-externalDocs:
-  description: Find out more about Swagger
-  url: 'http://swagger.io'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+      operationId: get-alarms-id
+    put:
+      summary: PUT Alarm
+      operationId: put-alarms-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alarm'
+      tags:
+        - Alarm
+    delete:
+      summary: DELETE Alarm
+      operationId: delete-alarms-id
+      responses:
+        '200':
+          description: OK
+  /availabilties:
+    get:
+      summary: GET Availabilities
+      tags:
+        - Availability
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Availability'
+      operationId: get-availabilties
+    post:
+      summary: POST Availability
+      operationId: post-availabilties
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+      tags:
+        - Availability
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Availability'
+  '/availabilities/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Availability
+      tags:
+        - Availability
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+      operationId: get-availabilities-id
+    put:
+      summary: PUT Availability
+      operationId: put-availabilities-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+      tags:
+        - Availability
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Availability'
+    delete:
+      summary: DELETE Availability
+      operationId: delete-availabilities-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Availability
+  /calendars:
+    get:
+      summary: GET Calendars
+      tags:
+        - Calendar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Calendar'
+      operationId: get-calendars
+    post:
+      summary: POST Calendar
+      operationId: post-calendars
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+      tags:
+        - Calendar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calendar'
+  '/calendars/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Calendar
+      tags:
+        - Calendar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+      operationId: get-calendars-id
+    put:
+      summary: PUT Calendar
+      operationId: put-calendars-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+      tags:
+        - Calendar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calendar'
+    delete:
+      summary: DELETE Calendar
+      operationId: delete-calendars-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Calendar
+  /events:
+    get:
+      summary: GET Events
+      tags:
+        - Event
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+      operationId: get-events
+    post:
+      summary: POST Event
+      operationId: post-events
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+      tags:
+        - Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+  '/events/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Event
+      tags:
+        - Event
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+      operationId: get-events-id
+    put:
+      summary: PUT Event
+      operationId: put-events-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+      tags:
+        - Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+    delete:
+      summary: DELETE Event
+      operationId: delete-events-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Event
+  /freebusies:
+    get:
+      summary: GET Freebusies
+      tags:
+        - Freebusy
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Freebusy'
+      operationId: get-freebusies
+    post:
+      summary: POST Freebusy
+      operationId: post-freebusies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+      tags:
+        - Freebusy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Freebusy'
+  '/freebusies/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Freebusy
+      tags:
+        - Freebusy
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+      operationId: get-freebusies-id
+    put:
+      summary: PUT Freebusy
+      operationId: put-freebusies-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+      tags:
+        - Freebusy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Freebusy'
+    delete:
+      summary: DELETE Freebusy
+      operationId: delete-freebusies-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Freebusy
+  /journals:
+    get:
+      summary: GET Journals
+      tags:
+        - Journal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Journal'
+      operationId: get-journals
+    post:
+      summary: POST Journal
+      operationId: post-journals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+      tags:
+        - Journal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Journal'
+  '/journals/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Journal
+      tags:
+        - Journal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+      operationId: get-journals-id
+    put:
+      summary: PUT Journal
+      operationId: put-journals-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+      tags:
+        - Journal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Journal'
+    delete:
+      summary: DELETE Journal
+      operationId: delete-journals-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Journal
+  /reservations:
+    get:
+      summary: GET Reservations
+      tags:
+        - Reservation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+      operationId: get-reservations
+    post:
+      summary: POST Reservation
+      operationId: post-reservations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+      tags:
+        - Reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+  '/reservations/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Reservation
+      tags:
+        - Reservation
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+      operationId: get-reservations-id
+    put:
+      summary: PUT Reservation
+      operationId: put-reservations-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      tags:
+        - Reservation
+    delete:
+      summary: DELETE Reservation
+      operationId: delete-reservations-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Reservation
+  /resources:
+    get:
+      summary: GET Resources
+      tags:
+        - Resource
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Resource'
+      operationId: get-resources
+    post:
+      summary: POST Resource
+      operationId: post-resources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+      tags:
+        - Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+  '/resources/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Resource
+      tags:
+        - Resource
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+      operationId: get-resources-id
+    put:
+      summary: PUT Resource
+      operationId: put-resources-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+      tags:
+        - Resource
+    delete:
+      summary: DELETE Resource
+      operationId: delete-resources-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Resource
+  /schedules:
+    get:
+      summary: GET Schedules
+      tags:
+        - Schedule
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+      operationId: get-schedules
+    post:
+      summary: POST Schedule
+      operationId: post-schedules
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+      tags:
+        - Schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+  '/schedules/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Schedule
+      tags:
+        - Schedule
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+      operationId: get-schedules-id
+    put:
+      summary: PUT Schedule
+      operationId: put-schedules-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+      tags:
+        - Schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+    delete:
+      summary: DELETE Schedule
+      operationId: delete-schedules-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Schedule
+  /todos:
+    get:
+      summary: GET Todo's
+      tags:
+        - Todo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+      operationId: get-todos
+    post:
+      summary: POST Todo
+      operationId: post-todos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+      tags:
+        - Todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+  '/todos/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: GET Todo
+      tags:
+        - Todo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+      operationId: get-todos-id
+    put:
+      summary: PUT Todo
+      operationId: put-todos-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+      tags:
+        - Todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+    delete:
+      summary: DELETE Todo
+      operationId: delete-todos-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Todo
 components:
-  responses:
-    PetResponse:
-      description: successful operation
-      content:
-        application/xml:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Pet'
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Pet'
-    UserResponse:
-      description: User response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/User'
-  requestBodies:
-    UserArray:
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/User'
-      description: List of user object
-      required: true
-    Pet:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Pet'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Pet'
-      description: Pet object that needs to be added to the store
-      required: true
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
-          scopes:
-            'write:pets': modify pets in your account
-            'read:pets': read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
   schemas:
-    Order:
+    Alarm:
+      title: Alarm
+      x-stoplight:
+        id: ve3vu9v3xsrqr
       type: object
+      x-tags:
+        - Alarm
       properties:
-        id:
-          type: integer
-          format: int64
-        petId:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int32
-        shipDate:
+        name:
           type: string
-          format: date-time
-        status:
+        description:
           type: string
-          description: Order Status
+        summary:
+          type: string
+        action:
+          type: string
           enum:
-            - placed
-            - approved
-            - delivered
-        complete:
-          type: boolean
-          default: false
-      xml:
-        name: Order
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        username:
+            - AUDIO
+            - DISPLAY
+            - EMAIL
+            - PROCEDURE
+          example: AUDIO
+          description: 'The action of the alarm. AUDIO, DISPLAY, EMAIL, PROCEDURE'
+        trigger:
           type: string
-        firstName:
+          example: PT30M
+          description: The time the alarm should trigger relative to the start time of the related event. (date interval)
+        duration:
           type: string
-        lastName:
+          description: The time until the alarm repeats.
+          example: PT30M
+        repeat:
+          type: number
+          description: The number of times the alarm repeats.
+          example: 4
+        event:
+          $ref: '#/components/schemas/Event'
+        todo:
           type: string
-        email:
-          type: string
-        password:
-          type: string
-        phone:
-          type: string
-        userStatus:
-          type: integer
-          format: int32
-          description: User Status
-      xml:
-        name: User
-    Category:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-      xml:
-        name: Category
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-      xml:
-        name: Tag
-    Pet:
-      type: object
+          description: The url of the todo for this alarm
       required:
         - name
-        - photoUrls
+        - action
+        - trigger
+        - duration
+    Availability:
+      title: Availability
+      x-stoplight:
+        id: v0g61skhyk6e7
+      type: object
+      x-tags:
+        - Availability
       properties:
-        id:
-          type: integer
-          format: int64
-        category:
-          $ref: '#/components/schemas/Category'
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        available:
+          type: boolean
+          description: Whether the block is available or not
+        resource:
+          type: string
+          description: A specific commonground resource
+    Calendar:
+      title: Calendar
+      x-stoplight:
+        id: sisblnjxqidgr
+      type: object
+      properties:
         name:
           type: string
-          example: doggie
-        photoUrls:
+        description:
+          type: string
+        organization:
+          type: string
+          description: A specific commonground organisation
+        person:
+          type: string
+          description: A specific commonground person from the contactcatalogus
+        resource:
+          type: string
+          description: A specific commonground resource
+        events:
           type: array
-          xml:
-            name: photoUrl
-            wrapped: true
           items:
-            type: string
-        tags:
+            $ref: ''
+        schedules:
           type: array
-          xml:
-            name: tag
-            wrapped: true
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: ''
+        freebusies:
+          type: array
+          items:
+            $ref: ''
+        journals:
+          type: array
+          items:
+            $ref: ''
+        todos:
+          type: array
+          items:
+            $ref: ''
+        timeZone:
+          type: string
+          example: CET
+        availabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Availability'
+      required:
+        - name
+        - timeZone
+      x-tags:
+        - Calendar
+    Event:
+      title: Event
+      x-stoplight:
+        id: yo7omutthmt44
+      type: object
+      x-tags:
+        - Event
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        organization:
+          type: string
+          description: A specific commonground organisation
+        resource:
+          type: string
+          description: A specific commonground resource
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        location:
+          type: string
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        calendar:
+          $ref: '#/components/schemas/Calendar'
+        class:
+          type: string
+          description: The security class of this event.
+          example: PUBLIC
+        geo:
+          type: string
+          description: The coordinates of this event.
+          example: '81.15147,10.36374,42.26'
+        organizer:
+          type: string
+          description: The organiser of this event linked to with an url.
         status:
           type: string
-          description: pet status in the store
+          example: Confirmed
+        summary:
+          type: string
+        transp:
+          type: string
+          description: The determination if the event should block the duration of the event for participants.
+          example: Transparent
+        duration:
+          type: string
+        contact:
+          type: string
+        seq:
+          type: integer
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 9
+          description: The priority of this event ranging from 1 (high) to 9 (low).
+        attendees:
+          type: array
+          description: The urls of the attendees of this event.
+          items:
+            type: string
+        attachments:
+          type: array
+          description: The urls of the attachments of this event.
+          items:
+            type: string
+        categories:
+          type: array
+          description: The urls of the catergories this event belongs to.
+          items:
+            type: string
+        comments:
+          type: array
+          description: The urls of the comments that belong to this event.
+          items:
+            type: string
+        related:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        alarms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alarm'
+        journal:
+          $ref: '#/components/schemas/Journal'
+        freebusies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Freebusy'
+      required:
+        - name
+        - startDate
+        - endDate
+        - priority
+    Freebusy:
+      title: Freebusy
+      x-stoplight:
+        id: o6vv9tnrtui5e
+      type: object
+      x-tags:
+        - Freebusy
+      properties:
+        description:
+          type: string
+        attendees:
+          type: array
+          description: The urls of the attendees of this event.
+          items:
+            type: string
+        comments:
+          type: array
+          description: The urls of the comments that belong to this event.
+          items:
+            type: string
+        contact:
+          type: string
+          description: Url of this person
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        duration:
+          type: string
+          description: The duration of this event. (date interval)
+          example: '2'
+        organiser:
+          type: string
+          description: The organiser of this event linked to with an url.
+        freebusy:
+          type: string
           enum:
-            - available
-            - pending
-            - sold
-      xml:
-        name: Pet
-    Inventory:
+            - FREE
+            - BUSY
+          example: FREE
+        resource:
+          type: string
+          description: A specific commonground resource
+        calendar:
+          $ref: '#/components/schemas/Calendar'
+        event:
+          $ref: '#/components/schemas/Event'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+      required:
+        - startDate
+        - endDate
+    Journal:
+      title: Journal
+      x-stoplight:
+        id: 5ikz9ikviwvfa
+      type: object
+      x-tags:
+        - Journal
+      description: ''
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        class:
+          type: string
+          description: The security class of this event.
+          example: PUBLIC
+        organiser:
+          type: string
+          description: The organiser of this event linked to with an url.
+        status:
+          type: string
+        summary:
+          type: string
+        transp:
+          type: string
+          example: transparent
+        duration:
+          type: string
+          example: '2'
+        seq:
+          type: integer
+        priority:
+          type: integer
+        attendees:
+          type: array
+          description: The urls of the attendees of this event.
+          items:
+            type: string
+        attachments:
+          type: string
+          description: The urls of the attachments of this event.
+        categories:
+          type: string
+          description: The urls of the catergories this event belongs to.
+        comments:
+          type: string
+          description: The urls of the comments that belong to this event.
+        resource:
+          type: string
+          description: A specific commonground resource
+        event:
+          $ref: '#/components/schemas/Event'
+      required:
+        - name
+        - startDate
+        - endDate
+    Reservation:
+      title: Reservation
+      x-stoplight:
+        id: vcdkvxz0zmhd2
+      type: object
+      x-tags:
+        - Reservation
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        underName:
+          type: string
+          description: The url of a person who is under name(the requester) of this reservation
+        event:
+          $ref: '#/components/schemas/Event'
+        provider:
+          type: string
+          description: The url of a person or organization who is the provider of this reservation
+        broker:
+          type: string
+          description: The url of a person or organization who is the broker of this reservation
+        reservationFor:
+          type: string
+          description: 'The thing -- flight, event, restaurant,etc. being reserved'
+        reservationStatus:
+          type: string
+          description: The current status of the reservation.
+        reservedTicket:
+          type: string
+          description: A ticket associated with the reservation.
+        programMembershipUsed:
+          type: string
+          description: 'Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation.'
+        priceCurrency:
+          type: string
+          description: The currency of this product in an ISO 4217 format
+          example: EUR
+        totalPrice:
+          type: string
+        comment:
+          type: string
+      required:
+        - name
+    Resource:
+      title: Resource
+      x-stoplight:
+        id: 531zngys98niu
+      type: object
+      x-tags:
+        - Resource
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        resource:
+          type: string
+          description: the uri of this resource
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        todos:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+    Schedule:
+      title: Schedule
+      x-stoplight:
+        id: k1b1dsd2tu9fd
       type: object
       properties:
-        additionalProperty:
+        name:
+          type: string
+        description:
+          type: string
+        daysPerWeek:
+          type: array
+          description: Defines the day(s) a week this recurrence occurs where monday is 1 and sunday is 7
+          items:
+            type: string
+        daysPerMonth:
+          type: array
+          items:
+            type: string
+        weeksPerYear:
+          type: array
+          items:
+            type: string
+        monthsPerYear:
+          type: array
+          items:
+            type: string
+        exceptDates:
+          type: array
+          items:
+            type: string
+        repeatTill:
+          type: string
+          format: date-time
+        repeatCount:
           type: integer
-          format: int32
-    ApiResponse:
+        repeatFrequency:
+          type: string
+          description: Defines the frequency at which Events will occur according to a schedule Schedule. The intervals between events should be defined as a Duration of time. (date interval)
+        resource:
+          type: string
+          description: A specific commonground resource (url)
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        freebusies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Freebusy'
+        todos:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+      x-tags:
+        - Schedule
+    Todo:
+      title: Todo
+      x-stoplight:
+        id: f96kp7wz1yeya
       type: object
+      x-tags:
+        - Todo
       properties:
-        code:
+        name:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        location:
+          type: string
+        class:
+          type: string
+          description: The security class of this event.
+        geo:
+          type: string
+          description: The coordinates of this event.
+        organiser:
+          type: string
+          description: The organiser of this event linked to with an url.
+        status:
+          type: string
+        summary:
+          type: string
+        duration:
+          type: string
+          description: |
+            The duration of this event. (date interval)
+        contact:
+          type: string
+          description: Url of this person
+        seq:
           type: integer
-          format: int32
-        type:
+          description: The version number of this event.
+        priority:
+          type: integer
+          description: The priority of this event ranging from 1 (high) to 9 (low).
+          minimum: 1
+          maximum: 9
+        attendees:
+          type: array
+          description: The urls of the attendees of this event.
+          items:
+            type: string
+        categories:
+          type: array
+          description: The urls of the catergories this event belongs to.
+          items:
+            type: string
+        comments:
+          type: array
+          items:
+            type: string
+        completed:
           type: string
-        message:
+          description: The date and time a to-do is completed.
+          format: date-time
+        percentageDone:
+          type: integer
+        resource:
           type: string
-  examples:
-    Order:
-      value:
-        quantity: 1
-        shipDate: '2018-10-19T16:46:45Z'
-        status: placed
-        complete: false
+          description: A specific commonground resource
+      required:
+        - name
