@@ -1,1304 +1,1998 @@
-openapi: 3.1.0
-x-stoplight:
-  id: wmbauq78jvjpl
-info:
-  title: AgendaService
-  version: '1.0'
-  summary: This API is about agenda functionality
-  description: 'Het "agenda" component is ontwikkeld voor de gemeente Utrecht en heeft als doel een agenda te koppelen aan objecten uit andere componenten uit commonground. Dit stelt je in staat om aan deze objecten, afspraken en beschikbaarheid te kunnen beheren.'
-servers:
-  - url: 'http://localhost/api'
-paths:
-  /alarms:
-    get:
-      summary: GET Alarms
-      tags:
-        - Alarm
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Alarm'
-      operationId: get-alarms
-    post:
-      summary: POST Alarm
-      operationId: post-alarms
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alarm'
-      tags:
-        - Alarm
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Alarm'
-  '/alarms/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Alarm
-      tags:
-        - Alarm
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alarm'
-      operationId: get-alarms-id
-    put:
-      summary: PUT Alarm
-      operationId: put-alarms-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alarm'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Alarm'
-      tags:
-        - Alarm
-    delete:
-      summary: DELETE Alarm
-      operationId: delete-alarms-id
-      responses:
-        '200':
-          description: OK
-  /availabilties:
-    get:
-      summary: GET Availabilities
-      tags:
-        - Availability
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Availability'
-      operationId: get-availabilties
-    post:
-      summary: POST Availability
-      operationId: post-availabilties
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Availability'
-      tags:
-        - Availability
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Availability'
-  '/availabilities/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Availability
-      tags:
-        - Availability
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Availability'
-      operationId: get-availabilities-id
-    put:
-      summary: PUT Availability
-      operationId: put-availabilities-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Availability'
-      tags:
-        - Availability
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Availability'
-    delete:
-      summary: DELETE Availability
-      operationId: delete-availabilities-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Availability
-  /calendars:
-    get:
-      summary: GET Calendars
-      tags:
-        - Calendar
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Calendar'
-      operationId: get-calendars
-    post:
-      summary: POST Calendar
-      operationId: post-calendars
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Calendar'
-      tags:
-        - Calendar
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Calendar'
-  '/calendars/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Calendar
-      tags:
-        - Calendar
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Calendar'
-      operationId: get-calendars-id
-    put:
-      summary: PUT Calendar
-      operationId: put-calendars-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Calendar'
-      tags:
-        - Calendar
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Calendar'
-    delete:
-      summary: DELETE Calendar
-      operationId: delete-calendars-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Calendar
-  /events:
-    get:
-      summary: GET Events
-      tags:
-        - Event
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Event'
-      operationId: get-events
-    post:
-      summary: POST Event
-      operationId: post-events
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Event'
-      tags:
-        - Event
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Event'
-  '/events/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Event
-      tags:
-        - Event
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Event'
-      operationId: get-events-id
-    put:
-      summary: PUT Event
-      operationId: put-events-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Event'
-      tags:
-        - Event
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Event'
-    delete:
-      summary: DELETE Event
-      operationId: delete-events-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Event
-  /freebusies:
-    get:
-      summary: GET Freebusies
-      tags:
-        - Freebusy
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Freebusy'
-      operationId: get-freebusies
-    post:
-      summary: POST Freebusy
-      operationId: post-freebusies
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Freebusy'
-      tags:
-        - Freebusy
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Freebusy'
-  '/freebusies/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Freebusy
-      tags:
-        - Freebusy
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Freebusy'
-      operationId: get-freebusies-id
-    put:
-      summary: PUT Freebusy
-      operationId: put-freebusies-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Freebusy'
-      tags:
-        - Freebusy
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Freebusy'
-    delete:
-      summary: DELETE Freebusy
-      operationId: delete-freebusies-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Freebusy
-  /journals:
-    get:
-      summary: GET Journals
-      tags:
-        - Journal
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Journal'
-      operationId: get-journals
-    post:
-      summary: POST Journal
-      operationId: post-journals
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Journal'
-      tags:
-        - Journal
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Journal'
-  '/journals/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Journal
-      tags:
-        - Journal
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Journal'
-      operationId: get-journals-id
-    put:
-      summary: PUT Journal
-      operationId: put-journals-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Journal'
-      tags:
-        - Journal
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Journal'
-    delete:
-      summary: DELETE Journal
-      operationId: delete-journals-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Journal
-  /reservations:
-    get:
-      summary: GET Reservations
-      tags:
-        - Reservation
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Reservation'
-      operationId: get-reservations
-    post:
-      summary: POST Reservation
-      operationId: post-reservations
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reservation'
-      tags:
-        - Reservation
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Reservation'
-  '/reservations/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Reservation
-      tags:
-        - Reservation
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reservation'
-      operationId: get-reservations-id
-    put:
-      summary: PUT Reservation
-      operationId: put-reservations-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reservation'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Reservation'
-      tags:
-        - Reservation
-    delete:
-      summary: DELETE Reservation
-      operationId: delete-reservations-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Reservation
-  /resources:
-    get:
-      summary: GET Resources
-      tags:
-        - Resource
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Resource'
-      operationId: get-resources
-    post:
-      summary: POST Resource
-      operationId: post-resources
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Resource'
-      tags:
-        - Resource
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Resource'
-  '/resources/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Resource
-      tags:
-        - Resource
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Resource'
-      operationId: get-resources-id
-    put:
-      summary: PUT Resource
-      operationId: put-resources-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Resource'
-      tags:
-        - Resource
-    delete:
-      summary: DELETE Resource
-      operationId: delete-resources-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Resource
-  /schedules:
-    get:
-      summary: GET Schedules
-      tags:
-        - Schedule
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Schedule'
-      operationId: get-schedules
-    post:
-      summary: POST Schedule
-      operationId: post-schedules
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-      tags:
-        - Schedule
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Schedule'
-  '/schedules/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Schedule
-      tags:
-        - Schedule
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-      operationId: get-schedules-id
-    put:
-      summary: PUT Schedule
-      operationId: put-schedules-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-      tags:
-        - Schedule
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Schedule'
-    delete:
-      summary: DELETE Schedule
-      operationId: delete-schedules-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Schedule
-  /todos:
-    get:
-      summary: GET Todo's
-      tags:
-        - Todo
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Todo'
-      operationId: get-todos
-    post:
-      summary: POST Todo
-      operationId: post-todos
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Todo'
-      tags:
-        - Todo
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Todo'
-  '/todos/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: GET Todo
-      tags:
-        - Todo
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Todo'
-      operationId: get-todos-id
-    put:
-      summary: PUT Todo
-      operationId: put-todos-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Todo'
-      tags:
-        - Todo
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Todo'
-    delete:
-      summary: DELETE Todo
-      operationId: delete-todos-id
-      responses:
-        '200':
-          description: OK
-      tags:
-        - Todo
-components:
-  schemas:
-    Alarm:
-      title: Alarm
-      x-stoplight:
-        id: ve3vu9v3xsrqr
-      type: object
-      x-tags:
-        - Alarm
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        summary:
-          type: string
-        action:
-          type: string
-          enum:
-            - AUDIO
-            - DISPLAY
-            - EMAIL
-            - PROCEDURE
-          example: AUDIO
-          description: 'The action of the alarm. AUDIO, DISPLAY, EMAIL, PROCEDURE'
-        trigger:
-          type: string
-          example: PT30M
-          description: The time the alarm should trigger relative to the start time of the related event. (date interval)
-        duration:
-          type: string
-          description: The time until the alarm repeats.
-          example: PT30M
-        repeat:
-          type: number
-          description: The number of times the alarm repeats.
-          example: 4
-        event:
-          $ref: '#/components/schemas/Event'
-        todo:
-          type: string
-          description: The url of the todo for this alarm
-      required:
-        - name
-        - action
-        - trigger
-        - duration
-    Availability:
-      title: Availability
-      x-stoplight:
-        id: v0g61skhyk6e7
-      type: object
-      x-tags:
-        - Availability
-      properties:
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        available:
-          type: boolean
-          description: Whether the block is available or not
-        resource:
-          type: string
-          description: A specific commonground resource
-    Calendar:
-      title: Calendar
-      x-stoplight:
-        id: sisblnjxqidgr
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        organization:
-          type: string
-          description: A specific commonground organisation
-        person:
-          type: string
-          description: A specific commonground person from the contactcatalogus
-        resource:
-          type: string
-          description: A specific commonground resource
-        events:
-          type: array
-          items:
-            $ref: ''
-        schedules:
-          type: array
-          items:
-            $ref: ''
-        freebusies:
-          type: array
-          items:
-            $ref: ''
-        journals:
-          type: array
-          items:
-            $ref: ''
-        todos:
-          type: array
-          items:
-            $ref: ''
-        timeZone:
-          type: string
-          example: CET
-        availabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/Availability'
-      required:
-        - name
-        - timeZone
-      x-tags:
-        - Calendar
-    Event:
-      title: Event
-      x-stoplight:
-        id: yo7omutthmt44
-      type: object
-      x-tags:
-        - Event
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        organization:
-          type: string
-          description: A specific commonground organisation
-        resource:
-          type: string
-          description: A specific commonground resource
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        location:
-          type: string
-        schedule:
-          $ref: '#/components/schemas/Schedule'
-        calendar:
-          $ref: '#/components/schemas/Calendar'
-        class:
-          type: string
-          description: The security class of this event.
-          example: PUBLIC
-        geo:
-          type: string
-          description: The coordinates of this event.
-          example: '81.15147,10.36374,42.26'
-        organizer:
-          type: string
-          description: The organiser of this event linked to with an url.
-        status:
-          type: string
-          example: Confirmed
-        summary:
-          type: string
-        transp:
-          type: string
-          description: The determination if the event should block the duration of the event for participants.
-          example: Transparent
-        duration:
-          type: string
-        contact:
-          type: string
-        seq:
-          type: integer
-        priority:
-          type: integer
-          minimum: 1
-          maximum: 9
-          description: The priority of this event ranging from 1 (high) to 9 (low).
-        attendees:
-          type: array
-          description: The urls of the attendees of this event.
-          items:
-            type: string
-        attachments:
-          type: array
-          description: The urls of the attachments of this event.
-          items:
-            type: string
-        categories:
-          type: array
-          description: The urls of the catergories this event belongs to.
-          items:
-            type: string
-        comments:
-          type: array
-          description: The urls of the comments that belong to this event.
-          items:
-            type: string
-        related:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Resource'
-        alarms:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alarm'
-        journal:
-          $ref: '#/components/schemas/Journal'
-        freebusies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Freebusy'
-      required:
-        - name
-        - startDate
-        - endDate
-        - priority
-    Freebusy:
-      title: Freebusy
-      x-stoplight:
-        id: o6vv9tnrtui5e
-      type: object
-      x-tags:
-        - Freebusy
-      properties:
-        description:
-          type: string
-        attendees:
-          type: array
-          description: The urls of the attendees of this event.
-          items:
-            type: string
-        comments:
-          type: array
-          description: The urls of the comments that belong to this event.
-          items:
-            type: string
-        contact:
-          type: string
-          description: Url of this person
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        duration:
-          type: string
-          description: The duration of this event. (date interval)
-          example: '2'
-        organiser:
-          type: string
-          description: The organiser of this event linked to with an url.
-        freebusy:
-          type: string
-          enum:
-            - FREE
-            - BUSY
-          example: FREE
-        resource:
-          type: string
-          description: A specific commonground resource
-        calendar:
-          $ref: '#/components/schemas/Calendar'
-        event:
-          $ref: '#/components/schemas/Event'
-        schedule:
-          $ref: '#/components/schemas/Schedule'
-      required:
-        - startDate
-        - endDate
-    Journal:
-      title: Journal
-      x-stoplight:
-        id: 5ikz9ikviwvfa
-      type: object
-      x-tags:
-        - Journal
-      description: ''
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        class:
-          type: string
-          description: The security class of this event.
-          example: PUBLIC
-        organiser:
-          type: string
-          description: The organiser of this event linked to with an url.
-        status:
-          type: string
-        summary:
-          type: string
-        transp:
-          type: string
-          example: transparent
-        duration:
-          type: string
-          example: '2'
-        seq:
-          type: integer
-        priority:
-          type: integer
-        attendees:
-          type: array
-          description: The urls of the attendees of this event.
-          items:
-            type: string
-        attachments:
-          type: string
-          description: The urls of the attachments of this event.
-        categories:
-          type: string
-          description: The urls of the catergories this event belongs to.
-        comments:
-          type: string
-          description: The urls of the comments that belong to this event.
-        resource:
-          type: string
-          description: A specific commonground resource
-        event:
-          $ref: '#/components/schemas/Event'
-      required:
-        - name
-        - startDate
-        - endDate
-    Reservation:
-      title: Reservation
-      x-stoplight:
-        id: vcdkvxz0zmhd2
-      type: object
-      x-tags:
-        - Reservation
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        underName:
-          type: string
-          description: The url of a person who is under name(the requester) of this reservation
-        event:
-          $ref: '#/components/schemas/Event'
-        provider:
-          type: string
-          description: The url of a person or organization who is the provider of this reservation
-        broker:
-          type: string
-          description: The url of a person or organization who is the broker of this reservation
-        reservationFor:
-          type: string
-          description: 'The thing -- flight, event, restaurant,etc. being reserved'
-        reservationStatus:
-          type: string
-          description: The current status of the reservation.
-        reservedTicket:
-          type: string
-          description: A ticket associated with the reservation.
-        programMembershipUsed:
-          type: string
-          description: 'Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation.'
-        priceCurrency:
-          type: string
-          description: The currency of this product in an ISO 4217 format
-          example: EUR
-        totalPrice:
-          type: string
-        comment:
-          type: string
-      required:
-        - name
-    Resource:
-      title: Resource
-      x-stoplight:
-        id: 531zngys98niu
-      type: object
-      x-tags:
-        - Resource
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        resource:
-          type: string
-          description: the uri of this resource
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        todos:
-          type: array
-          items:
-            type: string
-      required:
-        - name
-    Schedule:
-      title: Schedule
-      x-stoplight:
-        id: k1b1dsd2tu9fd
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        daysPerWeek:
-          type: array
-          description: Defines the day(s) a week this recurrence occurs where monday is 1 and sunday is 7
-          items:
-            type: string
-        daysPerMonth:
-          type: array
-          items:
-            type: string
-        weeksPerYear:
-          type: array
-          items:
-            type: string
-        monthsPerYear:
-          type: array
-          items:
-            type: string
-        exceptDates:
-          type: array
-          items:
-            type: string
-        repeatTill:
-          type: string
-          format: date-time
-        repeatCount:
-          type: integer
-        repeatFrequency:
-          type: string
-          description: Defines the frequency at which Events will occur according to a schedule Schedule. The intervals between events should be defined as a Duration of time. (date interval)
-        resource:
-          type: string
-          description: A specific commonground resource (url)
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        freebusies:
-          type: array
-          items:
-            $ref: '#/components/schemas/Freebusy'
-        todos:
-          type: array
-          items:
-            type: string
-      required:
-        - name
-      x-tags:
-        - Schedule
-    Todo:
-      title: Todo
-      x-stoplight:
-        id: f96kp7wz1yeya
-      type: object
-      x-tags:
-        - Todo
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        location:
-          type: string
-        class:
-          type: string
-          description: The security class of this event.
-        geo:
-          type: string
-          description: The coordinates of this event.
-        organiser:
-          type: string
-          description: The organiser of this event linked to with an url.
-        status:
-          type: string
-        summary:
-          type: string
-        duration:
-          type: string
-          description: |
-            The duration of this event. (date interval)
-        contact:
-          type: string
-          description: Url of this person
-        seq:
-          type: integer
-          description: The version number of this event.
-        priority:
-          type: integer
-          description: The priority of this event ranging from 1 (high) to 9 (low).
-          minimum: 1
-          maximum: 9
-        attendees:
-          type: array
-          description: The urls of the attendees of this event.
-          items:
-            type: string
-        categories:
-          type: array
-          description: The urls of the catergories this event belongs to.
-          items:
-            type: string
-        comments:
-          type: array
-          items:
-            type: string
-        completed:
-          type: string
-          description: The date and time a to-do is completed.
-          format: date-time
-        percentageDone:
-          type: integer
-        resource:
-          type: string
-          description: A specific commonground resource
-      required:
-        - name
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "wmbauq78jvjpl"
+  },
+  "info": {
+    "title": "AgendaService",
+    "version": "1.0",
+    "summary": "This API is about agenda functionality",
+    "description": "Het \"agenda\" component is ontwikkeld voor de gemeente Utrecht en heeft als doel een agenda te koppelen aan objecten uit andere componenten uit commonground. Dit stelt je in staat om aan deze objecten, afspraken en beschikbaarheid te kunnen beheren."
+  },
+  "servers": [
+    {
+      "url": "http://localhost/api"
+    }
+  ],
+  "paths": {
+    "/alarms": {
+      "get": {
+        "summary": "GET Alarms",
+        "tags": [
+          "Alarm"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Alarm"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-alarms"
+      },
+      "post": {
+        "summary": "POST Alarm",
+        "operationId": "post-alarms",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alarm"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Alarm"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Alarm"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alarms/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Alarm",
+        "tags": [
+          "Alarm"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alarm"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-alarms-id"
+      },
+      "put": {
+        "summary": "PUT Alarm",
+        "operationId": "put-alarms-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alarm"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Alarm"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Alarm"
+        ]
+      },
+      "delete": {
+        "summary": "DELETE Alarm",
+        "operationId": "delete-alarms-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Alarm"
+        ]
+      }
+    },
+    "/availabilties": {
+      "get": {
+        "summary": "GET Availabilities",
+        "tags": [
+          "Availability"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Availability"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-availabilties"
+      },
+      "post": {
+        "summary": "POST Availability",
+        "operationId": "post-availabilties",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Availability"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Availability"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Availability"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/availabilities/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Availability",
+        "tags": [
+          "Availability"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Availability"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-availabilities-id"
+      },
+      "put": {
+        "summary": "PUT Availability",
+        "operationId": "put-availabilities-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Availability"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Availability"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Availability"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Availability",
+        "operationId": "delete-availabilities-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Availability"
+        ]
+      }
+    },
+    "/calendars": {
+      "get": {
+        "summary": "GET Calendars",
+        "tags": [
+          "Calendar"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Calendar"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-calendars"
+      },
+      "post": {
+        "summary": "POST Calendar",
+        "operationId": "post-calendars",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Calendar"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Calendar"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/calendars/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Calendar",
+        "tags": [
+          "Calendar"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-calendars-id"
+      },
+      "put": {
+        "summary": "PUT Calendar",
+        "operationId": "put-calendars-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Calendar"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Calendar"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Calendar"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Calendar",
+        "operationId": "delete-calendars-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Calendar"
+        ]
+      }
+    },
+    "/events": {
+      "get": {
+        "summary": "GET Events",
+        "tags": [
+          "Event"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-events"
+      },
+      "post": {
+        "summary": "POST Event",
+        "operationId": "post-events",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Event"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Event",
+        "tags": [
+          "Event"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-events-id"
+      },
+      "put": {
+        "summary": "PUT Event",
+        "operationId": "put-events-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Event"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Event",
+        "operationId": "delete-events-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Event"
+        ]
+      }
+    },
+    "/freebusies": {
+      "get": {
+        "summary": "GET Freebusies",
+        "tags": [
+          "Freebusy"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Freebusy"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-freebusies"
+      },
+      "post": {
+        "summary": "POST Freebusy",
+        "operationId": "post-freebusies",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Freebusy"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Freebusy"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Freebusy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/freebusies/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Freebusy",
+        "tags": [
+          "Freebusy"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Freebusy"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-freebusies-id"
+      },
+      "put": {
+        "summary": "PUT Freebusy",
+        "operationId": "put-freebusies-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Freebusy"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Freebusy"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Freebusy"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Freebusy",
+        "operationId": "delete-freebusies-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Freebusy"
+        ]
+      }
+    },
+    "/journals": {
+      "get": {
+        "summary": "GET Journals",
+        "tags": [
+          "Journal"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Journal"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-journals"
+      },
+      "post": {
+        "summary": "POST Journal",
+        "operationId": "post-journals",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Journal"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Journal"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Journal"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/journals/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Journal",
+        "tags": [
+          "Journal"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Journal"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-journals-id"
+      },
+      "put": {
+        "summary": "PUT Journal",
+        "operationId": "put-journals-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Journal"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Journal"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Journal"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Journal",
+        "operationId": "delete-journals-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Journal"
+        ]
+      }
+    },
+    "/reservations": {
+      "get": {
+        "summary": "GET Reservations",
+        "tags": [
+          "Reservation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reservation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-reservations"
+      },
+      "post": {
+        "summary": "POST Reservation",
+        "operationId": "post-reservations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reservation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reservation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservations/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Reservation",
+        "tags": [
+          "Reservation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-reservations-id"
+      },
+      "put": {
+        "summary": "PUT Reservation",
+        "operationId": "put-reservations-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reservation"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reservation"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reservation"
+        ]
+      },
+      "delete": {
+        "summary": "DELETE Reservation",
+        "operationId": "delete-reservations-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Reservation"
+        ]
+      }
+    },
+    "/resources": {
+      "get": {
+        "summary": "GET Resources",
+        "tags": [
+          "Resource"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Resource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-resources"
+      },
+      "post": {
+        "summary": "POST Resource",
+        "operationId": "post-resources",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Resource"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resources/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Resource",
+        "tags": [
+          "Resource"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-resources-id"
+      },
+      "put": {
+        "summary": "PUT Resource",
+        "operationId": "put-resources-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource"
+        ]
+      },
+      "delete": {
+        "summary": "DELETE Resource",
+        "operationId": "delete-resources-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Resource"
+        ]
+      }
+    },
+    "/schedules": {
+      "get": {
+        "summary": "GET Schedules",
+        "tags": [
+          "Schedule"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-schedules"
+      },
+      "post": {
+        "summary": "POST Schedule",
+        "operationId": "post-schedules",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Schedule"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schedule"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schedules/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Schedule",
+        "tags": [
+          "Schedule"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-schedules-id"
+      },
+      "put": {
+        "summary": "PUT Schedule",
+        "operationId": "put-schedules-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Schedule"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schedule"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Schedule",
+        "operationId": "delete-schedules-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/todos": {
+      "get": {
+        "summary": "GET Todo's",
+        "tags": [
+          "Todo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Todo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-todos"
+      },
+      "post": {
+        "summary": "POST Todo",
+        "operationId": "post-todos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Todo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Todo"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/todos/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "GET Todo",
+        "tags": [
+          "Todo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-todos-id"
+      },
+      "put": {
+        "summary": "PUT Todo",
+        "operationId": "put-todos-id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Todo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Todo"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "DELETE Todo",
+        "operationId": "delete-todos-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Todo"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Alarm": {
+        "title": "Alarm",
+        "x-stoplight": {
+          "id": "ve3vu9v3xsrqr"
+        },
+        "type": "object",
+        "x-tags": [
+          "Alarm"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "AUDIO",
+              "DISPLAY",
+              "EMAIL",
+              "PROCEDURE"
+            ],
+            "example": "AUDIO",
+            "description": "The action of the alarm. AUDIO, DISPLAY, EMAIL, PROCEDURE"
+          },
+          "trigger": {
+            "type": "string",
+            "example": "PT30M",
+            "description": "The time the alarm should trigger relative to the start time of the related event. (date interval)"
+          },
+          "duration": {
+            "type": "string",
+            "description": "The time until the alarm repeats.",
+            "example": "PT30M"
+          },
+          "repeat": {
+            "type": "number",
+            "description": "The number of times the alarm repeats.",
+            "example": 4
+          },
+          "event": {
+            "$ref": "#/components/schemas/Event"
+          },
+          "todo": {
+            "type": "string",
+            "description": "The url of the todo for this alarm"
+          }
+        },
+        "required": [
+          "name",
+          "action",
+          "trigger",
+          "duration"
+        ]
+      },
+      "Availability": {
+        "title": "Availability",
+        "x-stoplight": {
+          "id": "v0g61skhyk6e7"
+        },
+        "type": "object",
+        "x-tags": [
+          "Availability"
+        ],
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "available": {
+            "type": "boolean",
+            "description": "Whether the block is available or not"
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource"
+          }
+        }
+      },
+      "Calendar": {
+        "title": "Calendar",
+        "x-stoplight": {
+          "id": "sisblnjxqidgr"
+        },
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "organization": {
+            "type": "string",
+            "description": "A specific commonground organisation"
+          },
+          "person": {
+            "type": "string",
+            "description": "A specific commonground person from the contactcatalogus"
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": ""
+            }
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "$ref": ""
+            }
+          },
+          "freebusies": {
+            "type": "array",
+            "items": {
+              "$ref": ""
+            }
+          },
+          "journals": {
+            "type": "array",
+            "items": {
+              "$ref": ""
+            }
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "$ref": ""
+            }
+          },
+          "timeZone": {
+            "type": "string",
+            "example": "CET"
+          },
+          "availabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Availability"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "timeZone"
+        ],
+        "x-tags": [
+          "Calendar"
+        ]
+      },
+      "Event": {
+        "title": "Event",
+        "x-stoplight": {
+          "id": "yo7omutthmt44"
+        },
+        "type": "object",
+        "x-tags": [
+          "Event"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "organization": {
+            "type": "string",
+            "description": "A specific commonground organisation"
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "type": "string"
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/Schedule"
+          },
+          "calendar": {
+            "$ref": "#/components/schemas/Calendar"
+          },
+          "class": {
+            "type": "string",
+            "description": "The security class of this event.",
+            "example": "PUBLIC"
+          },
+          "geo": {
+            "type": "string",
+            "description": "The coordinates of this event.",
+            "example": "81.15147,10.36374,42.26"
+          },
+          "organizer": {
+            "type": "string",
+            "description": "The organiser of this event linked to with an url."
+          },
+          "status": {
+            "type": "string",
+            "example": "Confirmed"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "transp": {
+            "type": "string",
+            "description": "The determination if the event should block the duration of the event for participants.",
+            "example": "Transparent"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "contact": {
+            "type": "string"
+          },
+          "seq": {
+            "type": "integer"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9,
+            "description": "The priority of this event ranging from 1 (high) to 9 (low)."
+          },
+          "attendees": {
+            "type": "array",
+            "description": "The urls of the attendees of this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attachments": {
+            "type": "array",
+            "description": "The urls of the attachments of this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "description": "The urls of the catergories this event belongs to.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "description": "The urls of the comments that belong to this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "related": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            }
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            }
+          },
+          "alarms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Alarm"
+            }
+          },
+          "journal": {
+            "$ref": "#/components/schemas/Journal"
+          },
+          "freebusies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Freebusy"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "startDate",
+          "endDate",
+          "priority"
+        ]
+      },
+      "Freebusy": {
+        "title": "Freebusy",
+        "x-stoplight": {
+          "id": "o6vv9tnrtui5e"
+        },
+        "type": "object",
+        "x-tags": [
+          "Freebusy"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "attendees": {
+            "type": "array",
+            "description": "The urls of the attendees of this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "description": "The urls of the comments that belong to this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contact": {
+            "type": "string",
+            "description": "Url of this person"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "string",
+            "description": "The duration of this event. (date interval)",
+            "example": "2"
+          },
+          "organiser": {
+            "type": "string",
+            "description": "The organiser of this event linked to with an url."
+          },
+          "freebusy": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "BUSY"
+            ],
+            "example": "FREE"
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource"
+          },
+          "calendar": {
+            "$ref": "#/components/schemas/Calendar"
+          },
+          "event": {
+            "$ref": "#/components/schemas/Event"
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/Schedule"
+          }
+        },
+        "required": [
+          "startDate",
+          "endDate"
+        ]
+      },
+      "Journal": {
+        "title": "Journal",
+        "x-stoplight": {
+          "id": "5ikz9ikviwvfa"
+        },
+        "type": "object",
+        "x-tags": [
+          "Journal"
+        ],
+        "description": "",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "class": {
+            "type": "string",
+            "description": "The security class of this event.",
+            "example": "PUBLIC"
+          },
+          "organiser": {
+            "type": "string",
+            "description": "The organiser of this event linked to with an url."
+          },
+          "status": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "transp": {
+            "type": "string",
+            "example": "transparent"
+          },
+          "duration": {
+            "type": "string",
+            "example": "2"
+          },
+          "seq": {
+            "type": "integer"
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "attendees": {
+            "type": "array",
+            "description": "The urls of the attendees of this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attachments": {
+            "type": "string",
+            "description": "The urls of the attachments of this event."
+          },
+          "categories": {
+            "type": "string",
+            "description": "The urls of the catergories this event belongs to."
+          },
+          "comments": {
+            "type": "string",
+            "description": "The urls of the comments that belong to this event."
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource"
+          },
+          "event": {
+            "$ref": "#/components/schemas/Event"
+          }
+        },
+        "required": [
+          "name",
+          "startDate",
+          "endDate"
+        ]
+      },
+      "Reservation": {
+        "title": "Reservation",
+        "x-stoplight": {
+          "id": "vcdkvxz0zmhd2"
+        },
+        "type": "object",
+        "x-tags": [
+          "Reservation"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "underName": {
+            "type": "string",
+            "description": "The url of a person who is under name(the requester) of this reservation"
+          },
+          "event": {
+            "$ref": "#/components/schemas/Event"
+          },
+          "provider": {
+            "type": "string",
+            "description": "The url of a person or organization who is the provider of this reservation"
+          },
+          "broker": {
+            "type": "string",
+            "description": "The url of a person or organization who is the broker of this reservation"
+          },
+          "reservationFor": {
+            "type": "string",
+            "description": "The thing -- flight, event, restaurant,etc. being reserved"
+          },
+          "reservationStatus": {
+            "type": "string",
+            "description": "The current status of the reservation."
+          },
+          "reservedTicket": {
+            "type": "string",
+            "description": "A ticket associated with the reservation."
+          },
+          "programMembershipUsed": {
+            "type": "string",
+            "description": "Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation."
+          },
+          "priceCurrency": {
+            "type": "string",
+            "description": "The currency of this product in an ISO 4217 format",
+            "example": "EUR"
+          },
+          "totalPrice": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Resource": {
+        "title": "Resource",
+        "x-stoplight": {
+          "id": "531zngys98niu"
+        },
+        "type": "object",
+        "x-tags": [
+          "Resource"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "resource": {
+            "type": "string",
+            "description": "the uri of this resource"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            }
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Schedule": {
+        "title": "Schedule",
+        "x-stoplight": {
+          "id": "k1b1dsd2tu9fd"
+        },
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "daysPerWeek": {
+            "type": "array",
+            "description": "Defines the day(s) a week this recurrence occurs where monday is 1 and sunday is 7",
+            "items": {
+              "type": "string"
+            }
+          },
+          "daysPerMonth": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "weeksPerYear": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "monthsPerYear": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "exceptDates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "repeatTill": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "repeatCount": {
+            "type": "integer"
+          },
+          "repeatFrequency": {
+            "type": "string",
+            "description": "Defines the frequency at which Events will occur according to a schedule Schedule. The intervals between events should be defined as a Duration of time. (date interval)"
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource (url)"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            }
+          },
+          "freebusies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Freebusy"
+            }
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "x-tags": [
+          "Schedule"
+        ]
+      },
+      "Todo": {
+        "title": "Todo",
+        "x-stoplight": {
+          "id": "f96kp7wz1yeya"
+        },
+        "type": "object",
+        "x-tags": [
+          "Todo"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "type": "string"
+          },
+          "class": {
+            "type": "string",
+            "description": "The security class of this event."
+          },
+          "geo": {
+            "type": "string",
+            "description": "The coordinates of this event."
+          },
+          "organiser": {
+            "type": "string",
+            "description": "The organiser of this event linked to with an url."
+          },
+          "status": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string",
+            "description": "The duration of this event. (date interval)\n"
+          },
+          "contact": {
+            "type": "string",
+            "description": "Url of this person"
+          },
+          "seq": {
+            "type": "integer",
+            "description": "The version number of this event."
+          },
+          "priority": {
+            "type": "integer",
+            "description": "The priority of this event ranging from 1 (high) to 9 (low).",
+            "minimum": 1,
+            "maximum": 9
+          },
+          "attendees": {
+            "type": "array",
+            "description": "The urls of the attendees of this event.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "description": "The urls of the catergories this event belongs to.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "completed": {
+            "type": "string",
+            "description": "The date and time a to-do is completed.",
+            "format": "date-time"
+          },
+          "percentageDone": {
+            "type": "integer"
+          },
+          "resource": {
+            "type": "string",
+            "description": "A specific commonground resource"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  }
+}
