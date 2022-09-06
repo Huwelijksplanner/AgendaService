@@ -1,0 +1,17 @@
+{
+  "openapi": "3.0.0",
+  "collection": "https://raw.githubusercontent.com/Huwelijksplanner/AgendaService/main/OAS.yaml",
+  "schemas": {
+    "Todo":[
+      {
+        "properties": {
+          "startDate": "01-09-2022 08:30",
+          "endDate": "09-09-2022 10:00",
+          "completed": "05-09-2022 8:48",
+          "organiser": "Barend van Leeuwen"
+        }
+      }
+    ]
+  }
+}
+    
