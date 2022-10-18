@@ -21,7 +21,726 @@ info:
     email: ruben@conduction.nl
   license:
     name: EUPL
-paths: {}
+paths:
+  /alarms:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alarm'
+      operationId: get-alarms
+    post:
+      summary: ''
+      operationId: post-alarms
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alarm'
+  '/alarms/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+      operationId: get-alarms-id
+    put:
+      summary: ''
+      operationId: put-alarms-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alarm'
+    delete:
+      summary: ''
+      operationId: delete-alarms-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+  /availabilities:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Availability'
+      operationId: get-availabilities
+    post:
+      summary: ''
+      operationId: post-availabilities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Availability'
+  '/availabilities/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+      operationId: get-availabilities-id
+    put:
+      summary: ''
+      operationId: put-availabilities-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Availability'
+    delete:
+      summary: ''
+      operationId: delete-availabilities-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+  /calendars:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Calendar'
+      operationId: get-calendars
+    post:
+      summary: ''
+      operationId: post-calendars
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calendar'
+  '/calendars/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+      operationId: get-calendars-id
+    put:
+      summary: ''
+      operationId: put-calendars-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Calendar'
+    delete:
+      summary: ''
+      operationId: delete-calendars-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Calendar'
+  /events:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    $ref: '#/components/schemas/Event'
+      operationId: get-events
+    post:
+      summary: ''
+      operationId: post-events
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+  '/events/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+      operationId: get-events-id
+    put:
+      summary: ''
+      operationId: put-events-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+    delete:
+      summary: ''
+      operationId: delete-events-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+  /freebusy:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Freebusy'
+      operationId: get-freebusy
+    post:
+      summary: ''
+      operationId: post-freebusy
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Freebusy'
+  '/freebusy/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+      operationId: get-freebusy-id
+    put:
+      summary: ''
+      operationId: put-freebusy-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Freebusy'
+    delete:
+      summary: ''
+      operationId: delete-freebusy-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Freebusy'
+  /journals:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    $ref: '#/components/schemas/Journal'
+      operationId: get-journals
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Journal'
+    post:
+      summary: ''
+      operationId: post-journals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+  '/journals/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+      operationId: get-journals-id
+    put:
+      summary: ''
+      operationId: put-journals-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Journal'
+    delete:
+      summary: ''
+      operationId: delete-journals-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journal'
+  /reservations:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    $ref: '#/components/schemas/Reservation'
+      operationId: get-reservations
+    post:
+      summary: ''
+      operationId: post-reservations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+  '/reservations/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+      operationId: get-reservations-id
+    put:
+      summary: ''
+      operationId: put-reservations-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+    delete:
+      summary: ''
+      operationId: delete-reservations-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+  /resources:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Resource'
+      operationId: get-resources
+    post:
+      summary: ''
+      operationId: post-resources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+  '/resources/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+      operationId: get-resources-id
+    put:
+      summary: ''
+      operationId: put-resources-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+    delete:
+      summary: ''
+      operationId: delete-resources-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+  /schedules:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Schedule'
+      operationId: get-schedules
+    post:
+      summary: ''
+      operationId: post-schedules
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+  '/schedules/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+      operationId: get-schedules-id
+    put:
+      summary: ''
+      operationId: put-schedules-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+    delete:
+      summary: ''
+      operationId: delete-schedules-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+  /todos:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Todo'
+      operationId: get-todos
+    post:
+      summary: ''
+      operationId: post-todos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+  '/todos/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Todo'
+      operationId: get-todos-id
+    put:
+      summary: ''
+      operationId: put-todos-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+    delete:
+      summary: ''
+      operationId: delete-todos-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
 components:
   schemas:
     Alarm:
