@@ -260,7 +260,9 @@ paths:
                 type: object
                 properties:
                   results:
-                    $ref: '#/components/schemas/Event'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
       operationId: get-events
     post:
       summary: ''
@@ -408,7 +410,9 @@ paths:
                 type: object
                 properties:
                   results:
-                    $ref: '#/components/schemas/Journal'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Journal'
       operationId: get-journals
       requestBody:
         content:
@@ -481,7 +485,9 @@ paths:
                 type: object
                 properties:
                   results:
-                    $ref: '#/components/schemas/Reservation'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Reservation'
       operationId: get-reservations
     post:
       summary: ''
